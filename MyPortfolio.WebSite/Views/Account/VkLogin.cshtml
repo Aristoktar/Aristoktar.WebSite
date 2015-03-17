@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "VkLogin";
+}
+<input type="hidden" id="vk_code" value="@ViewBag.Code"> 
+@ViewBag.mm5;
+@ViewBag.mm51;
+<h2>VkLogin</h2>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            var code = $('#vk_code').val();
+            $.getJSON('https://oauth.vk.com/access_token?client_id=4820777&client_secret=zpVXNcvp5kjiusAxBqsg&code=' + code + '&redirect_uri=@HttpContext.Current.Request.Url.Host:@HttpContext.Current.Request.Url.Port@Url.Action("VkLogin","Cabinet")', function (data) {
+
+            });
+        })
+    </script>
+    }

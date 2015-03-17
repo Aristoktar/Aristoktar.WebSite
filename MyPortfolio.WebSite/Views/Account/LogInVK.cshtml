@@ -1,0 +1,34 @@
+﻿@model MyPortfolio.WebSite.Models.Account.LogInVKModel
+@{
+    Layout = null;
+    ViewBag.Title = "LogInVK";
+}
+@if ( Model == null ) {
+    <form id="vk_login" method="post" action="@Url.Action("LogInVK","Account")">
+        @Html.HiddenFor(m=>m.Token,new {@id = "access_token"})
+        @Html.HiddenFor(m=>m.UserId,new {@id = "user_id"})
+        @Html.HiddenFor(m=>m.expire,new {@id = "expires_in"})
+        @Html.HiddenFor(m=>m.Email,new {@id = "email"})
+    </form>
+    <script type="text/javascript">
+        var access_token = getHashValue('access_token');
+        var user_id = getHashValue('user_id');
+        var expires_in = getHashValue('expires_in');
+        var email = getHashValue('email');
+        document.getElementById('access_token').value = getHashValue('access_token');
+        document.getElementById('user_id').value = getHashValue('user_id');
+        document.getElementById('expires_in').value = getHashValue('expires_in');
+        document.getElementById('email').value = getHashValue('email');
+        document.getElementById('vk_login').submit();
+
+        function getHashValue(key) {
+            return location.hash.match(new RegExp(key + '=([^&]*)'))[1];
+        }
+    
+    </script>
+}else {
+    <script type="text/javascript">window.close();
+        opener.location.reload(true);
+    </script>
+
+        }

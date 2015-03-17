@@ -1,0 +1,62 @@
+﻿body {
+    
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+@media (min-width: 768px) {
+  #menu_left .navbar-collapse {
+    height: auto;
+    border-top: 0;
+    box-shadow: none;
+    max-height: none;
+    padding-left:0;
+    padding-right:0;
+  }
+  #menu_left .navbar-collapse.collapse {
+    display: block !important;
+    width: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  #menu_left .navbar-collapse.in {
+    overflow-x: visible;
+  }
+
+#menu_left .navbar
+{
+	max-width:300px;
+	margin-right: 0;
+	margin-left: 0;
+}	
+
+#menu_left .navbar-nav,
+#menu_left .navbar-nav > li,
+#menu_left .navbar-left,
+#menu_left .navbar-right,
+#menu_left .navbar-header
+{float:none !important;}
+
+#menu_left .navbar-right .dropdown-menu {left:0;right:auto;}
+#menu_left .navbar-collapse .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+}

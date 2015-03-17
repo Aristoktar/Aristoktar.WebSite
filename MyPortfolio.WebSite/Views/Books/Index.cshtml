@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MyPortfolio.WebSite.Models.BookModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach ( var book in Model ) {
+    <label>@book.Name by @book.Author</label>
+}
