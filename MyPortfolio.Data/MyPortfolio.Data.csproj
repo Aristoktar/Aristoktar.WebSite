@@ -63,6 +63,14 @@
     <Compile Include="Migrations\201503121915246_usererr.Designer.cs">
       <DependentUpon>201503121915246_usererr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504041713259_AddEisenhowerTask.cs" />
+    <Compile Include="Migrations\201504041713259_AddEisenhowerTask.Designer.cs">
+      <DependentUpon>201504041713259_AddEisenhowerTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504041718181_EisenhowerTaskAddDescription.cs" />
+    <Compile Include="Migrations\201504041718181_EisenhowerTaskAddDescription.Designer.cs">
+      <DependentUpon>201504041718181_EisenhowerTaskAddDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,6 +96,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503121915246_usererr.resx">
       <DependentUpon>201503121915246_usererr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504041713259_AddEisenhowerTask.resx">
+      <DependentUpon>201504041713259_AddEisenhowerTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504041718181_EisenhowerTaskAddDescription.resx">
+      <DependentUpon>201504041718181_EisenhowerTaskAddDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

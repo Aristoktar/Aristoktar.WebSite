@@ -1,0 +1,32 @@
+﻿@model List<MyPortfolio.WebSite.Models.Eisenhower.EisenhowerTaskModel>
+@using MyPortfolio.Logic.Enums;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+ImportantUnUrgent
+@foreach ( var t in Model.Where(a=>a.Priority == EisenhowerPriority.ImportantUnUrgent) ) {
+    <h5>@t.Name</h5>
+}
+@foreach ( var t in Model ) {
+    if(t.Priority == MyPortfolio.Logic.Enums.EisenhowerPriority.ImportantUnUrgent)
+    <h5>@t.Name</h5>
+}
+<br>
+ImportantUrgent
+@foreach ( var t in Model.Where ( a => a.Priority == MyPortfolio.Logic.Enums.EisenhowerPriority.ImportantUrgent ) ) {
+    <h5>@t.Name</h5>
+}
+<br>
+UnImportantUnUrgent
+@foreach ( var t in Model.Where ( a => a.Priority == MyPortfolio.Logic.Enums.EisenhowerPriority.UnImportantUnUrgent ) ) {
+    <h5>@t.Name</h5>
+}
+<br>
+UnImportantUrgent
+@foreach ( var t in Model.Where ( a => a.Priority == MyPortfolio.Logic.Enums.EisenhowerPriority.UnImportantUrgent ) ) {
+    <h5>@t.Name</h5>
+}

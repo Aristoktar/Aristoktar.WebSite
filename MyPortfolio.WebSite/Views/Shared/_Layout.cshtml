@@ -24,6 +24,7 @@
                     <li><a href="@Url.Action( "About" , "Home")">@Resources.About</a></li>
                     <li>@Html.ActionLink(Resources.Contact, "Contact", "Home")</li>
                     <li><a href="@Url.Action("Index","Books")">@Resources.Books</a></li>
+                    <li><a href="@Url.Action("Index","Eisenhower")">Eisenhower</a></li>
                 </ul>
                 @{
                     Html.RenderAction ( "LogInHeader" , "Account" );

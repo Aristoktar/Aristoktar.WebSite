@@ -40,6 +40,15 @@ namespace MyPortfolio.Data
 			set;
 		}
 
+		public DbSet<EisenhowerTask> EisenhowerTasks {
+			get;
+			set;
+		}
+
+
+		
+
+
 		public IQueryable<Book> BooksQuery {
 			get {
 				return Books;
@@ -66,5 +75,12 @@ namespace MyPortfolio.Data
 		public void AddBook ( Book book ) {
 			Books.Add ( book );
 		}
+
+		public IQueryable<EisenhowerTask> EisenhowerTaskQuery {
+			get {
+				return EisenhowerTasks;
+			}
+		}
+		
 	}
 }

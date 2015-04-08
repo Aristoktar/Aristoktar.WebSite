@@ -27,6 +27,9 @@ namespace MyPortfolio.WebSite.Controllers {
 
 			return View ();
 		}
+		public ActionResult Lorenz () {
+			return View ();
+		}
 		
 	}
 }

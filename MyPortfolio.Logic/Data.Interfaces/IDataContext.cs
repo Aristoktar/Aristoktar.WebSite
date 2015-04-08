@@ -7,6 +7,10 @@ using MyPortfolio.Logic.Entities;
 
 namespace MyPortfolio.Logic.Data.Interfaces {
 	public interface IDataContext {
+
+		IQueryable<EisenhowerTask> EisenhowerTaskQuery {
+			get;
+		}
 		IQueryable<Book> BooksQuery {
 			get;
 		}
