@@ -14,11 +14,15 @@ namespace MyPortfolio.Logic.Data.Interfaces {
 		IQueryable<Book> BooksQuery {
 			get;
 		}
+		IQueryable<Author> AuthorsQuery {
+			get;
+		}
 		IQueryable<User> UsersQuery {
 			get;
 		}
 		void AddUser ( User user );
 		void AddBook ( Book book );
+		void AddAuthor( Author author );
 		void SaveAllChanges ();
 	}
 }

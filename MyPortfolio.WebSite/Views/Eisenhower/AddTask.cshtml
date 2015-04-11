@@ -1,7 +1,21 @@
-﻿
+﻿@model MyPortfolio.WebSite.Models.Eisenhower.EisenhowerTaskModel
+@using MyPortfolio.Logic.Enums
 @{
     ViewBag.Title = "AddTask";
 }
 
 <h2>AddTask</h2>
 
+@using ( Html.BeginForm ( "LogIn" , "Account" , FormMethod.Post , new { @id = "login_form"} ) ) {
+
+    @Html.LabelFor( m => m.Name );
+    @Html.TextBoxFor( m => m.Name );
+
+    @Html.LabelFor( m => m.Description );
+    @Html.TextAreaFor( m => m.Description );
+    
+    <input type="radio" class="radio" name="Priority" value="@((int)EisenhowerPriority.ImportantUrgent)">
+    <input type="radio" name="Priority" value="@((int)EisenhowerPriority.ImportantUnUrgent)">
+    <br>
+    <input type="submit" value="add">
+}

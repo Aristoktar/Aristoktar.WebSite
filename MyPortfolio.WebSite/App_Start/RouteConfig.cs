@@ -11,14 +11,27 @@ namespace MyPortfolio.WebSite {
 			routes.IgnoreRoute ( "{resource}.axd/{*pathInfo}" );
 
 			routes.MapRoute (
-				name: "Default" ,
+				name: "lang" ,
+				url: "{lang}/{controller}/{action}/{id}" ,
+				constraints : new { lang = @"ru|en" },
+				defaults: new {
+					controller = "Home" ,
+					action = "Index" ,
+					lang = "ru",
+					id = UrlParameter.Optional
+				}
+			);
+			routes.MapRoute (
+				name: "default" ,
 				url: "{controller}/{action}/{id}" ,
 				defaults: new {
 					controller = "Home" ,
 					action = "Index" ,
-					id = UrlParameter.Optional
+					id = UrlParameter.Optional ,
+					lang = "ru"
 				}
 			);
+
 		}
 	}
 }

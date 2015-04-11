@@ -21,8 +21,8 @@ namespace MyPortfolio.WebSite.Controllers
         {
 			var m = m_context.BooksQuery
 				.Select ( a => new BookModel {
-					Name = a.Name,
-					Author = a.Author
+					Name = a.Name//,
+					//Author = a.Author
 				} ).ToList ();
             return View(m);
         }

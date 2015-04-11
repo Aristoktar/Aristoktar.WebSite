@@ -144,6 +144,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BooksAdminController.cs" />
+    <Compile Include="Areas\Admin\Models\Books\AuthorModel.cs" />
+    <Compile Include="Areas\Admin\Models\Books\AddBookModel.cs" />
+    <Compile Include="Areas\Admin\Models\Books\BookModel.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\EisenhowerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -153,6 +157,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\LangSwitchHelper.cs" />
     <Compile Include="Models\Account\LogInModel.cs" />
     <Compile Include="Models\Account\LogInVKModel.cs" />
     <Compile Include="Models\Account\UserModel.cs" />
@@ -181,6 +186,9 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\LogIn.cshtml" />
+    <Content Include="Areas\Admin\Views\BooksAdmin\AddBook.cshtml" />
+    <Content Include="Areas\Admin\Views\BooksAdmin\Index.cshtml" />
+    <Content Include="App_Code\Helpers.cshtml" />
     <None Include="Properties\PublishProfiles\MyPortfolioPublishProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -222,7 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Cabinet\" />
     <Folder Include="Views\Profile\" />
   </ItemGroup>

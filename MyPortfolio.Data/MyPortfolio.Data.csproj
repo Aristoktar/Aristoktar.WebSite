@@ -71,6 +71,18 @@
     <Compile Include="Migrations\201504041718181_EisenhowerTaskAddDescription.Designer.cs">
       <DependentUpon>201504041718181_EisenhowerTaskAddDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504101810507_booksAuthorDel.cs" />
+    <Compile Include="Migrations\201504101810507_booksAuthorDel.Designer.cs">
+      <DependentUpon>201504101810507_booksAuthorDel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504101821128_booksAuthorAdd.cs" />
+    <Compile Include="Migrations\201504101821128_booksAuthorAdd.Designer.cs">
+      <DependentUpon>201504101821128_booksAuthorAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504101821559_booksAuthorAdd2.cs" />
+    <Compile Include="Migrations\201504101821559_booksAuthorAdd2.Designer.cs">
+      <DependentUpon>201504101821559_booksAuthorAdd2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +114,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504041718181_EisenhowerTaskAddDescription.resx">
       <DependentUpon>201504041718181_EisenhowerTaskAddDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504101810507_booksAuthorDel.resx">
+      <DependentUpon>201504101810507_booksAuthorDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504101821128_booksAuthorAdd.resx">
+      <DependentUpon>201504101821128_booksAuthorAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504101821559_booksAuthorAdd2.resx">
+      <DependentUpon>201504101821559_booksAuthorAdd2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

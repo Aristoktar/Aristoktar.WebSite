@@ -5,21 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MyPortfolio.Logic.Entities {
-	public class Book {
+	public class Author {
+
 		public int Id {
 			get;
 			set;
 		}
-		public string Name {
-			get;
-			set;
-		}
 
-		public int? AuthorId {
-			get;
-			set;
-		}
-		public virtual Author Author {
+		public string Name {
 			get;
 			set;
 		}
@@ -29,12 +22,7 @@ namespace MyPortfolio.Logic.Entities {
 			set;
 		}
 
-		public int? LogoId {
-			get;
-			set;
-		}
-
-		public int? FileId {
+		public virtual ICollection<Book> Books {
 			get;
 			set;
 		}

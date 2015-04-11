@@ -23,10 +23,16 @@ namespace MyPortfolio.Data
 			get;
 			set;
 		}
+		public DbSet<Author> Authors {
+			get;
+			set;
+		}
+
 		public DbSet<User> Users {
 			get;
 			set;
 		}
+		
 		public DbSet<ArticleCategory> ArticleCategories {
 			get;
 			set;
@@ -54,6 +60,7 @@ namespace MyPortfolio.Data
 				return Books;
 			}
 		}
+		
 		public IQueryable<User> UsersQuery {
 			get {
 				return Users;
@@ -75,12 +82,25 @@ namespace MyPortfolio.Data
 		public void AddBook ( Book book ) {
 			Books.Add ( book );
 		}
-
+		public void AddAuthor ( Author author ) {
+			Authors.Add ( author );
+		}
 		public IQueryable<EisenhowerTask> EisenhowerTaskQuery {
 			get {
 				return EisenhowerTasks;
 			}
 		}
+
+
+
+		public IQueryable<Author> AuthorsQuery {
+			get {
+				return Authors;
+			}
+		}
+
+
+
 		
 	}
 }

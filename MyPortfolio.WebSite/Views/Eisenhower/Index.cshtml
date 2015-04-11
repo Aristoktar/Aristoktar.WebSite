@@ -11,10 +11,7 @@ ImportantUnUrgent
 @foreach ( var t in Model.Where(a=>a.Priority == EisenhowerPriority.ImportantUnUrgent) ) {
     <h5>@t.Name</h5>
 }
-@foreach ( var t in Model ) {
-    if(t.Priority == MyPortfolio.Logic.Enums.EisenhowerPriority.ImportantUnUrgent)
-    <h5>@t.Name</h5>
-}
+
 <br>
 ImportantUrgent
 @foreach ( var t in Model.Where ( a => a.Priority == MyPortfolio.Logic.Enums.EisenhowerPriority.ImportantUrgent ) ) {
@@ -30,3 +27,25 @@ UnImportantUrgent
 @foreach ( var t in Model.Where ( a => a.Priority == MyPortfolio.Logic.Enums.EisenhowerPriority.UnImportantUrgent ) ) {
     <h5>@t.Name</h5>
 }
+<table border="1">
+    <tbody>
+        <tr>
+            <th>UnImportantUrgent</th>
+            <th>ImportantUrgent</th>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <th>UnImportantUnUrgent</th>
+            <th>ImportantUnUrgent</th>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+    </table>
+
+<a href="@Url.Action("AddTask","Eisenhower")" class="btn">add new</a>

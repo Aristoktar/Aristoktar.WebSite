@@ -45,6 +45,7 @@
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\ArticleCategory.cs" />
     <Compile Include="Entities\ArticlePart.cs" />
+    <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\EisenhowerTask.cs" />

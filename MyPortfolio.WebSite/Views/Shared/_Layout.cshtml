@@ -30,9 +30,20 @@
                     Html.RenderAction ( "LogInHeader" , "Account" );
                 }
                 <ul class="nav navbar-nav navbar-right">
-
-                    <li><a class="btn" id="lang_en">English</a></li>
-                    <li><a class="btn" id="lang_ru">Русский</a></li>
+                    
+                    @*<li><a class="btn"  id="lang_en">English</a></li>
+                    <li><a class="btn" id="lang_ru">Русский</a></li>*@
+                    @{
+                        var rote1 = new RouteValueDictionary ( ViewContext.RouteData.Values );
+                        if ( rote1.ContainsKey ( "lang" ) ) {
+                            rote1["lang"] = "en";
+                            
+                            <li><a class="btn" id="lang_en" href="@Url.RouteUrl(rote1)">English</a></li>
+                            rote1["lang"] = "ru";
+                            <li><a class="btn" id="lang_ru" href="@Url.RouteUrl(rote1)">Русский</a></li>
+                            Url.RouteUrl ( rote1 );
+                        }
+}
                 </ul>
             </div>
             

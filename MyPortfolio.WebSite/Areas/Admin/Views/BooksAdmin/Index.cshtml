@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MyPortfolio.WebSite.Areas.Admin.Models.Books.BookModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach ( var book in Model ) {
+    <a href="@Url.Action("EditBook","Books",new {@id = book.Id})">@book.Name</a> <br>
+}
+<a href="@Url.Action( "AddBook" , "BooksAdmin" )">add new</a>
