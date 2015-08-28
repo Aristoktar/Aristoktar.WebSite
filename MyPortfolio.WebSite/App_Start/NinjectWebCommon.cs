@@ -73,7 +73,7 @@ namespace MyPortfolio.WebSite.App_Start
         private static void RegisterServices(IKernel kernel) {
 			kernel.Bind<IDataContext> ().To<DataContext> ().InRequestScope();
 			kernel.Bind<IUserProvider> ().To<UserProvider> ();
-			kernel.BindFilter<ActionFilter> ( FilterScope.Action , 0 );
+			//kernel.BindFilter<ActionFilter> ( FilterScope.Action , 0 );
 
 			kernel.Bind<IHashProvider> ().To<SHA256HashProvider> ();
 			kernel.Bind<IRandomizeProvider> ().To<DefaultRandomizeProvider> ();
