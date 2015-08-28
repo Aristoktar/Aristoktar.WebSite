@@ -24,7 +24,7 @@
                     <li><a href="@Url.Action( "About" , "Home")">@Resources.About</a></li>
                     <li>@Html.ActionLink(Resources.Contact, "Contact", "Home")</li>
                     <li><a href="@Url.Action("Index","Books")">@Resources.Books</a></li>
-                    <li><a href="@Url.Action("Index","Eisenhower")">Eisenhower</a></li>
+                    <li><a href="@Url.Action("Test","Eisenhower")">Eisenhower</a></li>
                 </ul>
                 @{
                     Html.RenderAction ( "LogInHeader" , "Account" );
@@ -74,7 +74,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @*<script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>*@
     <script type="text/javascript">
 
     $('#lang_ru').click(function () {
@@ -96,18 +95,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
         $('#logout').click(function () {
             $.getJSON($(this).data('logout_href'), function (data) { location.reload(); });
         });
-    //VK.init({
-    //    apiId: 4820777
-    //});
-
-    //VK.Auth.getLoginStatus(function(response) {
-    //    if (response.session) {
-    //        /* Авторизованный в Open API пользователь */
-    //        //$('#login_vk').replaceWith('loged');
-    //    } else {
-    //        /* Неавторизованный в Open API пользователь */
-    //    }
-    //});
 
     $('#login_vk').click(function () {
         var resp;
@@ -117,34 +104,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
         var top = window.screen.height / 2 - 2 * height / 3;
         window.open('@Url.Action("LogInVK","Account")', 'newWin', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbars=0, Resizable=0, Copyhistory=1, Width='
                    + width + ', Height=' + height + ', Left=' + left + ', Top=' + top);
-        @*VK.Auth.login(function (response) {
-            if (response.session) {
-                /* Пользователь успешно авторизовался */
-
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("LogInVK","Account")',
-                    dataType: 'application/json',
-                    async: false,
-                    data: {
-                        "expire": response.session.expire,
-                        "mid": response.session.mid,
-                        "secret": response.session.secret,
-                        "sid": response.session.sid,
-                        "sig": response.session.sig
-                    }
-                }).always(function (data) {
-
-                })
-
-            } else {
-                /* Пользователь нажал кнопку Отмена в окне авторизации */
-            }
-        }, 4194304
-        );*@
-
-
-        //location.reload();
     });
 
     $('#logout').click(function () {
@@ -152,10 +111,6 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
     });
     </script>
 
-    
-    <script type="text/javascript">
-        
-    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

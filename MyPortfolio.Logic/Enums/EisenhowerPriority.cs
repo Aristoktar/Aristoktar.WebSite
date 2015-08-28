@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyPortfolio.Logic.Enums {
 	public enum EisenhowerPriority {
-		ImportantUrgent=0,
-		UnImportantUrgent=1,
-		ImportantUnUrgent =2,
-		UnImportantUnUrgent=3
+		ImportantUrgent=1,
+		UnImportantUrgent=0,
+		ImportantUnUrgent =3,
+		UnImportantUnUrgent=2
 	}
 }

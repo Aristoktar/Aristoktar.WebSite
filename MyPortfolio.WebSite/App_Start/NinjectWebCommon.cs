@@ -8,11 +8,13 @@ namespace MyPortfolio.WebSite.App_Start
 	using System.Web.Mvc;
 	using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 	using MyPortfolio.Data;
+	using MyPortfolio.Logic.Data.Implementation;
 	using MyPortfolio.Logic.Data.Interfaces;
 	using MyPortfolio.WebSite.Filters;
 	using Ninject;
 	using Ninject.Web.Common;
 	using Ninject.Web.Mvc.FilterBindingSyntax;
+	using Ninject.Web.WebApi;
 	using Providers.Security.Implementation;
 	using Providers.Security.Providers;
 	using Providers.Web.Providers;
@@ -20,7 +22,6 @@ namespace MyPortfolio.WebSite.App_Start
 	using WebHttpRequest = Providers.Web.Implementation.HttpRequest;
 	using WebHttpCache = Providers.Web.Implementation.HttpCache;
 	using WebHttpCookie = Providers.Web.Implementation.HttpCookie;
-	using MyPortfolio.Logic.Data.Implementation;
 
     public static class NinjectWebCommon 
     {
@@ -70,8 +71,9 @@ namespace MyPortfolio.WebSite.App_Start
         /// Load your modules or register your services here!
         /// </summary>
         /// <param name="kernel">The kernel.</param>
-        private static void RegisterServices(IKernel kernel) {
-			kernel.Bind<IDataContext> ().To<DataContext> ().InRequestScope();
+        private static void RegisterServices(IKernel kernel)
+        {
+			kernel.Bind<IDataContext> ().To<DataContext> ().InRequestScope ();
 			kernel.Bind<IUserProvider> ().To<UserProvider> ();
 			kernel.BindFilter<ActionFilter> ( FilterScope.Action , 0 );
 
@@ -82,6 +84,7 @@ namespace MyPortfolio.WebSite.App_Start
 			kernel.Bind<IHttpRequest> ().To<WebHttpRequest> ().InRequestScope ();
 			kernel.Bind<IHttpCache> ().To<WebHttpCache> ().InRequestScope ();
 			kernel.Bind<IHttpCookie> ().To<WebHttpCookie> ().InRequestScope ();
+			kernel.Bind<IEisenhowerContext> ().To<EisenhowerContext> ();
 			kernel.Bind<ISiteAuthorization> ().To<SiteAuthorization> ();
         }        
     }

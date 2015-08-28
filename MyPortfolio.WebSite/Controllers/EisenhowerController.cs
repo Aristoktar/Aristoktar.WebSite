@@ -20,12 +20,25 @@ namespace MyPortfolio.WebSite.Controllers
         public ActionResult Index()
         {
 			var tasks = m_DataContext.EisenhowerTaskQuery.Select ( a => new EisenhowerTaskModel {
-				Name = a.Name,
-				Description =a.Description,
+				Name = a.Name ,
+				Description = a.Description ,
 				Priority = a.Priority
-			} ).ToList();
+			} ).ToList ();
+
+			//var tasks = new List<EisenhowerTaskModel> () {
+			//new EisenhowerTaskModel{
+			//	Description = "temp",
+			//	Name = "tempName",
+			//	Priority = Logic.Enums.EisenhowerPriority.ImportantUnUrgent,
+				
+			//}
+			//};
             return View(tasks);
         }
+
+		public ActionResult Test () {
+			return View ();
+		}
 
 		public ActionResult AddTask () {
 			return View ();

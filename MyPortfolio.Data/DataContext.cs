@@ -52,9 +52,6 @@ namespace MyPortfolio.Data
 		}
 
 
-		
-
-
 		public IQueryable<Book> BooksQuery {
 			get {
 				return Books;
@@ -67,29 +64,17 @@ namespace MyPortfolio.Data
 			}
 		}
 
-		public void SaveAllChanges () {
-			SaveChanges ();
-		}
-
-
-
-
-
+		
 		public void AddUser ( User user ) {
 			Users.Add ( user );
 		}
-
 		public void AddBook ( Book book ) {
 			Books.Add ( book );
 		}
 		public void AddAuthor ( Author author ) {
 			Authors.Add ( author );
 		}
-		public IQueryable<EisenhowerTask> EisenhowerTaskQuery {
-			get {
-				return EisenhowerTasks;
-			}
-		}
+		
 
 
 
@@ -100,7 +85,27 @@ namespace MyPortfolio.Data
 		}
 
 
+		#region Eisenhower
+		public IQueryable<EisenhowerTask> EisenhowerTaskQuery {
+			get {
+				return EisenhowerTasks;
+			}
+		}
+		public void AddEisenhowerTask ( EisenhowerTask task ) {
+			EisenhowerTasks.Add ( task );
+		}
 
-		
+		public void DeleteEisenhowerTask ( int taskId ) {
+			var task = new EisenhowerTask {
+				Id = taskId
+			};
+			EisenhowerTasks.Attach ( task );
+			EisenhowerTasks.Remove ( task );
+		} 
+		#endregion
+
+		public void SaveAllChanges () {
+			SaveChanges ();
+		}
 	}
 }
