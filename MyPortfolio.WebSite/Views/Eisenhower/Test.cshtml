@@ -1,0 +1,259 @@
+﻿@using MyPortfolio.Logic.Enums
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/LayoutAngular.cshtml";
+}
+<style>
+    .selected {
+        background-color: red;
+    }
+    li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+   ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+   }
+    table.matrix td {
+    cursor: pointer;
+    }
+
+    table.eisenhower li {
+        cursor: pointer;
+    }
+</style>
+<h2>Test</h2>
+
+@* UnImportantUrgent = taks1, ImportantUrgent = task2, UnImportantUnUrgent = taks3,ImportantUnUrgent = task4 *@
+<div class="container" ng-controller="TaskCtrl">
+    
+    <table border="1" class="col-lg-4 eisenhower">
+        <tbody>
+            <tr>
+                <th>UnImportantUrgent</th>
+                <th>ImportantUrgent</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li ng-repeat="task in tasks1" ng-class="{'selected':$index == selectedItem0}" ng-click="SelectTask(task,$index,0)">
+                            {{task.Name}}
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li ng-repeat="task in tasks2" ng-class="{'selected':$index == selectedItem1}" ng-click="SelectTask(task,$index,1)">
+                            {{task.Name}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>UnImportantUnUrgent</th>
+                <th>ImportantUnUrgent</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li ng-repeat="task in tasks3" ng-class="{'selected':$index == selectedItem2}" ng-click="SelectTask(task,$index,2)">
+                            {{task.Name}}
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li ng-repeat="task in tasks4" ng-class="{'selected':$index == selectedItem3}" ng-click="SelectTask(task,$index,3)">
+                            {{task.Name}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-lg-4" ng-hide="hidden">
+        Current task:
+        <br>
+        Name : {{currentTask.Name}}
+        <br>
+        Priority : {{currentTask.Priority}}
+        <br>
+        Description : {{currentTask.Description}}
+        <button ng-click="RemoveTask()">remove!</button>
+    </div>
+    <div class="col-lg-4">
+
+        Name
+        <input ng-model="newtask.Name" />
+        <br />
+        Description
+        <input type="text" ng-model="newtask.Description" />
+
+        <table class="matrix">
+            <tr ng-repeat="row in matrix track by $index" style="height:15px;">
+                <td ng-repeat="cell in row track by $index" ng-style="matrixColors[$parent.$index][$index]"
+                    ng-click="SelectPriority($parent.$index, $index)"
+                    style="height: 50px;width: 50px;border: 1px solid black">
+                    {{cell}}
+                </td>
+            </tr>
+        </table>
+
+        <button ng-click="AddTask()">add</button>
+    </div>
+    
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+
+        function TaskCtrl($scope, $http) {
+            
+       
+           $http.get('/api/eisenhower/GetTasks').success(function (data) {
+               //var tasks1 = [];
+               //var tasks2 = [];
+               //var tasks3 = [];
+               //var tasks4 = [];
+               $scope.hidden=true;
+               $scope.tasks1 = [];
+               $scope.tasks2 = [];
+               $scope.tasks3 = [];
+               $scope.tasks4 = [];
+               //UnImportantUrgent = taks1,
+               //ImportantUrgent = task2,
+               //UnImportantUnUrgent = taks3,
+               //ImportantUnUrgent = task4
+               for (var i = 0; i < data.length; i++)
+               {
+                   switch (data[i].Priority)
+                   {
+                       case @((int)EisenhowerPriority.UnImportantUrgent):
+                           $scope.tasks1.push(data[i]);
+                           break;
+                       case @((int)EisenhowerPriority.ImportantUrgent):
+                           $scope.tasks2.push(data[i]);
+                           break;
+                       case @((int)EisenhowerPriority.UnImportantUnUrgent):
+                           $scope.tasks3.push(data[i]);
+                           break;
+                       case @((int)EisenhowerPriority.ImportantUnUrgent):
+                           $scope.tasks4.push(data[i]);
+                           break;
+                       default:break;
+                   }
+               }
+               
+           });
+           $scope.newtask ={};
+           $scope.currentTask = {};
+           $scope.matrix = [
+              ['0', '1'],
+              ['2', '3']
+           ];
+           $scope.matrixColors = [
+              [{}, {}],
+              [{}, {}]
+           ];
+           
+           $scope.SelectPriority = function(row, col) {
+               
+               $scope.newtask.Priority = row*2 + col;
+               $scope.matrixColors = [
+                  [{}, {}],
+                  [{}, {}]
+               ];
+               $scope.matrixColors[row][col] = {'background-color':'red'};
+           };
+           $scope.AddTask = function(){
+               var taskToAdd={'Name':$scope.newtask.Name,'Description':$scope.newtask.Description,'Priority':$scope.newtask.Priority};
+               $http.post('/api/eisenhower/AddTask', taskToAdd).
+                  success(function(data, status, headers, config) {
+
+                      switch($scope.newtask.Priority)
+                      {
+                          case @((int)EisenhowerPriority.UnImportantUrgent):
+                              $scope.tasks1.push(data);
+                              break;
+                          case @((int)EisenhowerPriority.ImportantUrgent):
+                              $scope.tasks2.push(data);
+                              break;
+                          case @((int)EisenhowerPriority.UnImportantUnUrgent):
+                              $scope.tasks3.push(data);
+                              break;
+                          case @((int)EisenhowerPriority.ImportantUnUrgent):
+                              $scope.tasks4.push(data);
+                              break;
+                          default:break;
+                      }
+                      $scope.newtask ={};
+                  }).
+                  error(function(data, status, headers, config) {
+                      // called asynchronously if an error occurs
+                      // or server returns response with an error status.
+                  });
+               
+           };
+           _
+            $scope.selectedItem0 = null;
+            $scope.selectedItem1 = null;
+            $scope.selectedItem2 = null;
+            $scope.selectedItem3 = null;
+
+            
+            $scope.SelectTask = function(task,index,priority){
+                $scope.selectedItem0 = null;
+                $scope.selectedItem1 = null;
+                $scope.selectedItem2 = null;
+                $scope.selectedItem3 = null;
+                switch(priority)
+                {
+                    case 0:
+                        $scope.selectedItem0 = index;
+                        break;
+                    case 1:
+                        $scope.selectedItem1 = index;
+                        break;
+                    case 2:
+                        $scope.selectedItem2 = index;
+                        break;
+                    case 3:
+                        $scope.selectedItem3 = index;
+                        break;
+                }
+                $scope.currentTask = task;
+                $scope.hidden = false;
+            };
+
+            $scope.RemoveTask = function(){
+                $http.get('/api/eisenhower/DelTask/'+$scope.currentTask.Id).success(function (data) {
+                    switch($scope.currentTask.Priority)
+                    {
+                        case 0:
+                            $scope.tasks1.splice($scope.tasks1.indexOf($scope.currentTask),1);
+                            break;
+                        case 1:
+                            $scope.tasks2.splice($scope.tasks1.indexOf($scope.currentTask),1);
+                            break;
+                        case 2:
+                            $scope.tasks3.splice($scope.tasks1.indexOf($scope.currentTask),1);
+                            break;
+                        case 3:
+                            $scope.tasks4.splice($scope.tasks1.indexOf($scope.currentTask),1);
+                            break;
+                    }
+                    $scope.currentTask = null;
+                    $scope.hidden = true;
+                }).error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+            };
+        }
+
+            
+
+    </script>
+    }

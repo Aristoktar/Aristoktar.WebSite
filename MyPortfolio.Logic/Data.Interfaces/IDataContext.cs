@@ -8,9 +8,13 @@ using MyPortfolio.Logic.Entities;
 namespace MyPortfolio.Logic.Data.Interfaces {
 	public interface IDataContext {
 
+		#region Eisenhower
 		IQueryable<EisenhowerTask> EisenhowerTaskQuery {
 			get;
 		}
+		void AddEisenhowerTask ( EisenhowerTask task );
+		void DeleteEisenhowerTask ( int TaskId ); 
+		#endregion
 		IQueryable<Book> BooksQuery {
 			get;
 		}

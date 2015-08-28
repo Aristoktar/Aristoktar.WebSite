@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data.Implementation\EisenhowerContext.cs" />
     <Compile Include="Data.Implementation\UserProvider.cs" />
     <Compile Include="Data.Interfaces\IDataContext.cs" />
+    <Compile Include="Data.Interfaces\IEisenhowerContext.cs" />
     <Compile Include="Data.Interfaces\IUserProvider.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\ArticleCategory.cs" />

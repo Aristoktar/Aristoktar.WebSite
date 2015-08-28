@@ -1,0 +1,252 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        @Scripts.Render( "Scripts/jquery-1.10.2.min.js" )
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <title>Index</title>
+    </head>
+    <body class="container" id="main">
+
+        @*<video width="480" height="320" controls="controls" autoplay="autoplay">
+            <source src="/api/Video/Get" type="video/mp4" />
+        </video>*@
+        
+
+        
+        <div class="col-lg-2 col-xs-2">
+            <button id="up" class="btn">Up</button>
+            <br />
+            <button id="down" class="btn">Down</button>
+            <button id="stop" class="btn">STOP</button>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+            <img id="videoFrame1" width="604" height="453" style="transform: rotate(90deg)" src="http://192.168.0.110:8080/?video" />
+            <img id="videoFrame2" width="604" height="453" style="transform: rotate(90deg)" src="http://192.168.0.110:8080/?video" />
+        </div>
+        <div class="col-lg-2 col-xs-2">
+            <button id="left" class="btn">Left</button>
+        </div>
+        <div class="col-lg-2 col-xs-2">
+            <button id="right" class="btn">Right</button>
+        </div>
+        <script type="text/javascript">
+
+            var activFirstFrame = true;
+            setInterval(function () {
+                var frame1 = $("#videoFrame1");
+                var frame2 = $("#videoFrame2");
+                
+                if (activFirstFrame)
+                {
+                    frame2.attr("src", frame1.attr("src")).attr("z-index", 1000);
+                    frame1.attr("z-index", 1);
+                    frame2.css('display', 'block');
+                    frame1.css('display', 'none');
+                    frame1.attr("src", "http://192.168.0.110:8080/?video=" + Math.floor(Math.random() * 1000000));
+                    //frame1.attr("z-index", 1).attr("src", "http://192.168.0.110:8080/?video=" + Math.floor(Math.random() * 1000000)).css('display', 'none');
+                    //frame2.attr("src", frame1.attr("src")).attr("z-index", 1000).css('display', 'block');
+                    //activFirstFrame = false;
+                }
+                else
+                {
+                    frame2.attr("src", frame1.attr("src")).attr("z-index", 1000);
+                    frame1.attr("z-index", 1);
+                    frame2.css('display', 'block');
+                    frame1.css('display', 'none');
+                    frame1.attr("src", "http://192.168.0.110:8080/?video=" + Math.floor(Math.random() * 1000000));
+                    //frame2.attr("z-index", 0).attr("src", "http://192.168.0.110:8080/?video=" + Math.floor(Math.random() * 1000000)).css('display', 'none');
+                    //frame1.attr("src", frame2.attr("src")).attr("z-index", 1000).css('display', 'block');
+                    //activFirstFrame = true;
+                }
+            }, 120);
+            
+
+            var ActionValueEnum = {
+                FORWARD: 0,
+                BACKWARD: 1,
+                LEFT: 2,
+                RIGHT: 3,
+                STOP: 4
+            }
+            var ActionTypeEnum = {
+                UP: 0,
+                DOWN: 1
+            }
+            $("#main").keydown(handleKey).keyup(handleKey);
+            $("#up").mousedown(function () {
+                sendAction(ActionValueEnum.FORWARD, ActionTypeEnum.DOWN);
+            });
+            $("#up").mouseup(function () {
+                sendAction(ActionValueEnum.FORWARD, ActionTypeEnum.UP);
+            });
+            $("#down").mousedown(function () {
+                sendAction(ActionValueEnum.BACKWARD, ActionTypeEnum.DOWN);
+            });
+            $("#down").mouseup(function () {
+                sendAction(ActionValueEnum.BACKWARD, ActionTypeEnum.UP);
+            });
+            $("#left").mousedown(function () {
+                sendAction(ActionValueEnum.LEFT, ActionTypeEnum.DOWN);
+            });
+            $("#left").mouseup(function () {
+                sendAction(ActionValueEnum.LEFT, ActionTypeEnum.UP);
+            });
+            $("#right").mousedown(function () {
+                sendAction(ActionValueEnum.RIGHT, ActionTypeEnum.DOWN);
+            });
+            $("#right").mouseup(function () {
+                sendAction(ActionValueEnum.RIGHT, ActionTypeEnum.UP);
+            });
+            $("#stop").mouseup(function () {
+                sendAction(ActionValueEnum.STOP, ActionTypeEnum.UP);
+            });
+            $("#stop").mousedown(function () {
+                sendAction(ActionValueEnum.STOP, ActionTypeEnum.DOWN);
+            });
+            function updateView(target, actionType)
+            {
+                if (actionType == ActionTypeEnum.DOWN) {
+                    target.addClass("btn-success");
+                }
+                else {
+                    target.removeClass("btn-success");
+                }
+            }
+            function sendAction(actionValue, actionType)
+            {
+                var actionTypeString = "drive";
+                var actionValueString;
+                    switch (actionValue) {
+                        case ActionValueEnum.FORWARD:
+                            updateView($("#up"), actionType);
+                            actionTypeString = "drive";
+                            actionValueString = "forward";
+
+                            break;
+                        case ActionValueEnum.BACKWARD:
+                            updateView($("#down"), actionType);
+                            actionTypeString = "drive";
+                            actionValueString = "backward";
+                            break;
+                        case ActionValueEnum.LEFT:
+                            updateView($("#left"), actionType);
+                            actionTypeString = "weel";
+                            actionValueString = "left";
+                            break;
+                        case ActionValueEnum.RIGHT:
+                            updateView($("#right"), actionType);
+                            actionTypeString = "weel";
+                            actionValueString = "right";
+                            break;
+                        case ActionValueEnum.STOP:
+                            updateView($("#stop"), actionType);
+                            actionTypeString = "drive";
+                            actionValueString = "break";
+                        default:
+                            break;
+                    }
+
+                if (actionType == ActionTypeEnum.UP) {
+                    actionValueString = "break";
+                }
+                $.get("/?" + actionTypeString + "=" + actionValueString, function (data) { });
+
+            }
+            var downPressed = false;
+            var upPressed = false;
+            var leftPressed = false;
+            var rightPressed = false;
+            var stopPressed = false;
+
+            function handleKey(e) {
+                var actionType;
+                var actionValue;
+                if (e.type == 'keydown') 
+                    actionType = ActionTypeEnum.DOWN;
+                else
+                    actionType = ActionTypeEnum.UP;
+                switch (e.keyCode)
+                {
+                    case 38:
+                        if (actionType == ActionTypeEnum.DOWN) {
+                            if (upPressed) {
+                                return;
+                            } else {
+                                upPressed = true;
+                            }
+                        }
+                        else
+                            upPressed = false;
+                        actionValue = ActionValueEnum.FORWARD;
+                        break;
+                    case 40:
+                        if (actionType == ActionTypeEnum.DOWN) {
+                            if (downPressed) {
+                                return;
+                            } else {
+                                downPressed = true;
+                            }
+                        }
+                        else
+                            downPressed = false;
+                        actionValue = ActionValueEnum.BACKWARD;
+                        
+                        break;
+                    case 37:
+                        if (actionType == ActionTypeEnum.DOWN) {
+                            if (leftPressed) {
+                                return;
+                            } else {
+                                leftPressed = true;
+                            }
+                        }
+                        else
+                            leftPressed = false;
+                        actionValue = ActionValueEnum.LEFT;
+                       
+                        break;
+                    case 39:
+                        if (actionType == ActionTypeEnum.DOWN) {
+                            if (rightPressed) {
+                                return;
+                            } else {
+                                rightPressed = true;
+                            }
+                        }
+                        else
+                            rightPressed = false;
+                        actionValue = ActionValueEnum.RIGHT;
+                        
+                        break;
+                    case 32:
+                        if (actionType == ActionTypeEnum.DOWN) {
+                            if (stopPressed) {
+                                return;
+                            } else {
+                                stopPressed = true;
+                            }
+                        }
+                        else
+                            stopPressed = false;
+                        actionValue = ActionValueEnum.STOP;
+                        
+                        break;
+                    default:                    
+                        break;
+                }
+                sendAction(actionValue, actionType);
+            }
+        </script>
+    </body>
+</html>
