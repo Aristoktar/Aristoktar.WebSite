@@ -13,7 +13,7 @@ namespace MyPortfolio.WebSite.Filters {
 		}
 
 		public void OnActionExecuting ( ActionExecutingContext filterContext ) {
-
+			
 			string CurrentLangCode;
 
 			if ( filterContext.RequestContext.RouteData.Values["lang"] != null && filterContext.RequestContext.RouteData.Values["lang"] as string != "null" ) {

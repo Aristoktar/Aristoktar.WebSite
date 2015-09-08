@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Providers.Web", "Providers.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Providers.Security", "Providers.Security\Providers.Security.csproj", "{D3FCD39E-A1EE-4688-9FA9-4CF66CB9D17E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTree.Logic", "FamilyTree.Logic\FamilyTree.Logic.csproj", "{412A1093-FD63-4585-83A7-F3F6C257131B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D3FCD39E-A1EE-4688-9FA9-4CF66CB9D17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3FCD39E-A1EE-4688-9FA9-4CF66CB9D17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3FCD39E-A1EE-4688-9FA9-4CF66CB9D17E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{412A1093-FD63-4585-83A7-F3F6C257131B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412A1093-FD63-4585-83A7-F3F6C257131B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412A1093-FD63-4585-83A7-F3F6C257131B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412A1093-FD63-4585-83A7-F3F6C257131B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
