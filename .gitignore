@@ -189,5 +189,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 Web.config
-*txt
+*.txt
 
